@@ -1,12 +1,1 @@
-### redux memo
-- redux : 리덕스 관련 코드를 모두 모아놀은 폴더
-- config : 리덕스 설정 관련 파일을 모아놓은 폴더
-- configStore.js : 중앙 state 관리소 → 설정 코드
-- modules : state의 그룹
-- reducer : state에 변화를 일으키는 함수
-  - dispatch가 action을 store에 전달
-  - state를 action 객체의 type에 따라 변경해주는 함수
-- Hard coding 방지를 위한 방법
-  - action value : type과 payload를 가지고 있는 객체
-  - action 객체는 action type을 payload만큼 처리하는 것
-  - action creator : action 객체를 return하는 함수
+
