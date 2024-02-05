@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -23,7 +23,7 @@ function ModifyHandler(props) {
   const target = boardItems.filter((element) => id === element.id);
   const [newTitle, setNewTitle] = useState(target[0].title);
   const [newAddresser, setNewAddresser] = useState(target[0].addresser);
-  const newContent = useRef(target[0].content);
+  const [newContent, setNewContent] = useState(target[0].content);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,11 +50,11 @@ function ModifyHandler(props) {
       password: target[0].password,
       content: newContent.current,
     };
-    dispatch(modifyBoard(newBoard))
+    dispatch(modifyBoard(newBoard));
 
-    alert("Modified!")
-    navigate(list)
-  }
+    alert("Modified!");
+    navigate(list);
+  };
 
   return (
     <>
@@ -74,6 +74,7 @@ function ModifyHandler(props) {
                 id={id + "title"}
                 type="text"
                 value={newTitle}
+                maxLength={10}
                 onChange={(event) => setNewTitle(event.target.value)}
               />
             </StSection>
@@ -83,6 +84,7 @@ function ModifyHandler(props) {
                 id={id + "addresser"}
                 type="text"
                 value={newAddresser}
+                maxLength={5}
                 onChange={(event) => setNewAddresser(event.target.value)}
               />
             </StSection>
@@ -91,14 +93,18 @@ function ModifyHandler(props) {
               <StTextarea
                 id={id + "content"}
                 rows={5}
-                value={newContent.current}
-                onChange={(event) => (newContent.current = event.target.value)}
+                value={newContent}
+                maxLength={100}
+                onChange={(event) => setNewContent(event.target.value)}
               />
             </StSection>
           </StModifyContainer>
         </>
       )}
-      <StButton className="modifyButton" onClick={!modifyOpen ? modifyForm : modifyHandler}>
+      <StButton
+        className="modifyButton"
+        onClick={!modifyOpen ? modifyForm : modifyHandler}
+      >
         Modify
       </StButton>
       {passwordOpen ? (

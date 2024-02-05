@@ -20,22 +20,22 @@ const DeleteHandler = () => {
     navigate(list, { replace: true });
   };
 
+  const passwordInput = () => {
+    if(!passwordOpen) {setPasswordOpen(true)}
+  };
+
   const deleteHandler = () => {
     const target = boardItems.filter((element) => id === element.id);
-    if (!passwordOpen) {
-      setPasswordOpen(true);
-    } else {
-      if (password === target[0].password) {
-        if (window.confirm("Really Remove This Letter?")) {
-          dispatch(deleteBoard(...target));
-          backToList();
-        } else {
-          setPassword("");
-        }
+    if (password === target[0].password) {
+      if (window.confirm("Really Remove This Letter?")) {
+        dispatch(deleteBoard(...target));
+        backToList();
       } else {
-        alert("Wrong Password!");
         setPassword("");
       }
+    } else {
+      alert("Wrong Password!");
+      setPassword("");
     }
   };
 
@@ -44,7 +44,7 @@ const DeleteHandler = () => {
       <StButton className="backButton" onClick={backToList}>
         Back to List
       </StButton>
-      <StButton className="deleteButton" onClick={deleteHandler}>
+      <StButton className="deleteButton" onClick={!passwordOpen ? passwordInput : deleteHandler}>
         Delete
       </StButton>
       {passwordOpen ? (

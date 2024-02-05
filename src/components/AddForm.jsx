@@ -31,7 +31,7 @@ const AddForm = () => {
       alert("Addresser is Empty!");
     } else if (!password) {
       alert("Set Your Password!");
-    } else if (!content.current) {
+    } else if (!content) {
       alert("No Letter Content!");
     } else {
       if (window.confirm("Register Your Message?")) {
@@ -65,6 +65,7 @@ const AddForm = () => {
           id={id + "title"}
           type="text"
           value={title}
+          maxLength={10}
           onChange={(event) => setTitle(event.target.value)}
         />
       </StSection>
@@ -89,6 +90,7 @@ const AddForm = () => {
           id={id + "addresser"}
           type="text"
           value={addresser}
+          maxLength={5}
           onChange={(event) => setAddresser(event.target.value)}
         />
       </StSection>
@@ -98,6 +100,7 @@ const AddForm = () => {
           id={id + "password"}
           type="password"
           value={password}
+          maxLength={8}
           onChange={(event) => setPassword(event.target.value)}
         />
       </StSection>
@@ -106,6 +109,7 @@ const AddForm = () => {
         <StTextarea
           id={id + "content"}
           rows={5}
+          maxLength={100}
           onChange={(event) => setContent(event.target.value)}
         />
       </StSection>
