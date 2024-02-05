@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import Password from "./Password";
 import { modifyBoard } from "../redux/modules/BoardItems";
 import {
   StButton,
@@ -13,8 +14,6 @@ import {
 } from "../styles/MyStyles";
 
 function ModifyHandler(props) {
-  const [password, setPassword] = useState("");
-  const [passwordOpen, setPasswordOpen] = useState(false);
   const [modifyOpen, setModifyOpen] = useState(false);
   const boardItems = useSelector((state) => state.boardItemsReducer.boardItems);
   const list = useLocation().state.list;
@@ -29,14 +28,14 @@ function ModifyHandler(props) {
   const navigate = useNavigate();
 
   const modifyForm = () => {
-    if (!passwordOpen) {
-      setPasswordOpen(true);
+    if (!props.passwordOpen) {
+      props.setPasswordOpen(true);
     } else {
-      if (password === target[0].password) {
+      if (props.password === target[0].password) {
         setModifyOpen(true);
       } else {
         alert("Wrong Password!");
-        setPassword("");
+        props.setPassword("");
       }
     }
   };
@@ -48,12 +47,15 @@ function ModifyHandler(props) {
       receiver: target[0].receiver,
       addresser: newAddresser,
       password: target[0].password,
-      content: newContent.current,
+      content: newContent,
     };
-    dispatch(modifyBoard(newBoard));
 
-    alert("Modified!");
-    navigate(list);
+    if (window.confirm("Really Modify This Letter?")) {
+      dispatch(modifyBoard(newBoard));
+
+      alert("Modified!");
+      navigate(list);
+    }
   };
 
   return (
@@ -107,19 +109,12 @@ function ModifyHandler(props) {
       >
         Modify
       </StButton>
-      {passwordOpen ? (
-        <StSection className="password">
-          <label>Password</label>
-          <StInput
-            id={id + "password"}
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </StSection>
-      ) : (
-        <></>
-      )}
+      <Password
+        id={id}
+        passwordOpen={props.passwordOpen}
+        password={props.password}
+        setPassword={props.setPassword}
+      />
     </>
   );
 }

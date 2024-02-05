@@ -51,6 +51,7 @@ const AddForm = () => {
         setTitle("");
         setAddresser("");
         setPassword("");
+        setContent("")
       } else {
         alert("Cancelled");
       }
@@ -65,6 +66,7 @@ const AddForm = () => {
           id={id + "title"}
           type="text"
           value={title}
+          placeholder="Title → Less than 10 char"
           maxLength={10}
           onChange={(event) => setTitle(event.target.value)}
         />
@@ -90,6 +92,7 @@ const AddForm = () => {
           id={id + "addresser"}
           type="text"
           value={addresser}
+          placeholder="Addresser → Less than 5 char"
           maxLength={5}
           onChange={(event) => setAddresser(event.target.value)}
         />
@@ -100,6 +103,7 @@ const AddForm = () => {
           id={id + "password"}
           type="password"
           value={password}
+          placeholder="Password → Less than 8 char"
           maxLength={8}
           onChange={(event) => setPassword(event.target.value)}
         />
@@ -109,6 +113,8 @@ const AddForm = () => {
         <StTextarea
           id={id + "content"}
           rows={5}
+          value={content}
+          placeholder="Content → Less than 100 char"
           maxLength={100}
           onChange={(event) => setContent(event.target.value)}
         />

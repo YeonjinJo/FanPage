@@ -1,4 +1,4 @@
-import { doc, setDoc, deleteDoc, updateDoc} from "firebase/firestore/lite";
+import { doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore/lite";
 
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore/lite";
@@ -91,13 +91,15 @@ const boardItemsReducer = (state = initialState, action) => {
 
     case MODIFY_BOARD:
       updateDoc(doc(db, "messages", action.payload.id), action.payload);
+      const newBoardItems = state.boardItems.filter(
+        (element) => action.payload.id !== element.id
+      );
 
       return {
         ...state,
         boardItems: [
-          state.boardItems.filter(
-            (element) => action.payload.id !== element.id
-          ),
+          ...newBoardItems, 
+          
           {
             id: action.payload.id,
             receiver: action.payload.receiver,
@@ -105,8 +107,8 @@ const boardItemsReducer = (state = initialState, action) => {
             addresser: action.payload.addresser,
             password: action.payload.password,
             content: action.payload.content,
-          },
-        ],
+          }
+        ]
       };
 
     default:

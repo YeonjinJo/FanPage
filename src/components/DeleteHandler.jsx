@@ -1,14 +1,12 @@
 import React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { StButton, StSection, StInput } from "../styles/MyStyles";
+import Password from "./Password";
+import { StButton } from "../styles/MyStyles";
 import { deleteBoard } from "../redux/modules/BoardItems";
 
-const DeleteHandler = () => {
-  const [password, setPassword] = useState("");
-  const [passwordOpen, setPasswordOpen] = useState(false);
+const DeleteHandler = (props) => {
   const boardItems = useSelector((state) => state.boardItemsReducer.boardItems);
 
   const dispatch = useDispatch();
@@ -21,21 +19,21 @@ const DeleteHandler = () => {
   };
 
   const passwordInput = () => {
-    if(!passwordOpen) {setPasswordOpen(true)}
+    if(!props.passwordOpen) {props.setPasswordOpen(true)}
   };
 
   const deleteHandler = () => {
     const target = boardItems.filter((element) => id === element.id);
-    if (password === target[0].password) {
+    if (props.password === target[0].password) {
       if (window.confirm("Really Remove This Letter?")) {
         dispatch(deleteBoard(...target));
         backToList();
       } else {
-        setPassword("");
+        props.setPassword("");
       }
     } else {
       alert("Wrong Password!");
-      setPassword("");
+      props.setPassword("");
     }
   };
 
@@ -44,22 +42,15 @@ const DeleteHandler = () => {
       <StButton className="backButton" onClick={backToList}>
         Back to List
       </StButton>
-      <StButton className="deleteButton" onClick={!passwordOpen ? passwordInput : deleteHandler}>
+      <StButton className="deleteButton" onClick={!props.passwordOpen ? passwordInput : deleteHandler}>
         Delete
       </StButton>
-      {passwordOpen ? (
-        <StSection className="password">
-          <label>Password</label>
-          <StInput
-            id={id + "password"}
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </StSection>
-      ) : (
-        <></>
-      )}
+      <Password
+        id={id}
+        passwordOpen={props.passwordOpen}
+        password={props.password}
+        setPassword={props.setPassword}
+      />
     </>
   );
 };
