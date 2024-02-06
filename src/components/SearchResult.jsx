@@ -18,17 +18,13 @@ function SearchResult() {
             {boardItems
               .filter((element) =>
                 element.title
-                  .trim()
+                  .replace(" ", "")
                   .toUpperCase()
-                  .includes(searchKeyword.trim().toUpperCase())
+                  .includes(searchKeyword.replace(" ", "").toUpperCase())
               )
               .map((element) => {
-                return !element ? (
-                  <StItems>
-                    <p></p>
-                    <h3>No Result</h3>
-                  </StItems>
-                ) : (
+                console.log(Object.keys(element).length);
+                return (
                   <StItem id={element.id} key={element.id}>
                     <h3 id={element.id}>{element.title}</h3>
                     <p id={element.id}>

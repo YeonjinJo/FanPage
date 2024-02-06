@@ -32,7 +32,7 @@ export const StFooter = styled.footer`
   position: absolute;
   bottom: 0;
   width: 100vw;
-  height: 5vh;
+  height: 7vh;
 `;
 
 export const StTitle = styled(Link)`
@@ -214,7 +214,7 @@ export const StDetailContainer = styled.div`
 export const StImg = styled.img`
   ${makeFlex}
   border-radius: 0.5rem;
-  height: 55vh;
+  height: 52vh;
 `;
 
 export const SearchInput = styled.input`
