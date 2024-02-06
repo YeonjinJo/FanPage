@@ -22,7 +22,10 @@ export const StHeader = styled.header`
 `;
 
 export const StFooter = styled.footer`
-  ${makeFlex}
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background-color: lightpink;
   padding: 2vh 0;
   margin-top: 2vh;
@@ -67,7 +70,7 @@ export const StLink = styled(Link)`
   border-radius: 0.5rem;
   color: white;
   display: flex;
-  margin: 0 .5vw;
+  margin: 0 0.5vw;
   padding: 1.5vh;
   font-size: 2vh;
 
@@ -140,7 +143,12 @@ export const StItems = styled.div`
   height: 48vh;
   gap: 1vh;
   flex-wrap: wrap;
-  grid-auto-rows: 12vh;
+  grid-auto-rows: 16vh;
+
+  & h3 {
+    text-align: center;
+    margin-top: 2vh;
+  }
 `;
 
 export const StItem = styled.div`
@@ -154,14 +162,13 @@ export const StItem = styled.div`
 `;
 
 export const StModifyContainer = styled.div`
-    ${makeFlex}
-
-`
+  ${makeFlex}
+`;
 
 export const StDetailContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3 1fr);
-  grid-template-rows: .1fr .1fr 1fr .1fr .1fr;
+  grid-template-rows: 0.1fr 0.1fr 1fr 0.1fr 0.1fr;
   grid-template-areas:
     "title title title"
     "addresser addresser time"
@@ -208,4 +215,34 @@ export const StImg = styled.img`
   ${makeFlex}
   border-radius: 0.5rem;
   height: 55vh;
+`;
+
+export const SearchInput = styled.input`
+  padding: 1vh;
+  margin-left: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  width: 25vw;
+`;
+
+export const SearchButton = styled.button`
+  ${inputStyle}
+  background-color: white;
+  padding: 1vh;
+  width: auto;
+  font-family: "nanum";
+  font-size: 1.4vh;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightgray;
+  }
+`;
+
+export const SearchSelect = styled.select`
+  padding: 1vh;
+  margin-left: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  width: 10vw;
 `;

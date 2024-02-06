@@ -10,6 +10,7 @@ import Home from "../routes/Home";
 import Letter from "../routes/Letter"
 import Glory from "../routes/Glory";
 import Detail from "../routes/Detail";
+import Search from "../routes/Search";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/job5" element={<Glory />} />
       <Route path="/letter" element={<Letter />} />
       <Route path="/detail" element={<Detail />} />
+      <Route path="/search" element={<Search />} />
     </Routes>
   );
 }
