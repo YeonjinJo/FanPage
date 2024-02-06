@@ -1,5 +1,4 @@
 import { doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore/lite";
-
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore/lite";
 
@@ -18,6 +17,7 @@ export const addBoard = (input) => {
       title: input.title,
       addresser: input.addresser,
       password: input.password,
+      timeString: input.timeString,
       content: input.content,
     },
   };
@@ -32,6 +32,7 @@ export const deleteBoard = (input) => {
       title: input.title,
       addresser: input.addresser,
       password: input.password,
+      timeString: input.timeString,
       content: input.content,
     },
   };
@@ -46,6 +47,7 @@ export const modifyBoard = (input) => {
       title: input.title,
       addresser: input.addresser,
       password: input.password,
+      timeString: input.timeString,
       content: input.content,
     },
   };
@@ -53,6 +55,7 @@ export const modifyBoard = (input) => {
 
 // initial State
 const initialState = { boardItems: [] };
+
 const snapshot = await getDocs(collection(db, "messages"));
 snapshot.forEach((doc) => {
   initialState.boardItems.push(doc.data());
@@ -74,6 +77,7 @@ const boardItemsReducer = (state = initialState, action) => {
             title: action.payload.title,
             addresser: action.payload.addresser,
             password: action.payload.password,
+            timeString: action.payload.timeString,
             content: action.payload.content,
           },
         ],
@@ -106,6 +110,7 @@ const boardItemsReducer = (state = initialState, action) => {
             title: action.payload.title,
             addresser: action.payload.addresser,
             password: action.payload.password,
+            timeString: action.payload.timeString,
             content: action.payload.content,
           }
         ]

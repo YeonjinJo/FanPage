@@ -24,6 +24,15 @@ const AddForm = () => {
   const dispatch = useDispatch();
 
   const onSubmitHandler = (event) => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth()+1).toString().padStart(2,'0');
+    const date = today.getDate().toString().padStart(2,'0');
+    const hours = today.getHours().toString().padStart(2,'0');
+    const minutes = today.getMinutes().toString().padStart(2,'0');
+    const seconds = today.getSeconds().toString().padStart(2,'0');
+    const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
+
     event.preventDefault();
     if (!title) {
       alert("Title is Empty!");
@@ -41,6 +50,7 @@ const AddForm = () => {
           receiver,
           addresser,
           password,
+          timeString,
           content,
         };
 
@@ -51,7 +61,7 @@ const AddForm = () => {
         setTitle("");
         setAddresser("");
         setPassword("");
-        setContent("")
+        setContent("");
       } else {
         alert("Cancelled");
       }

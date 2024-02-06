@@ -41,12 +41,22 @@ function ModifyHandler(props) {
   };
 
   const modifyHandler = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth()+1).toString().padStart(2,'0');
+    const date = today.getDate().toString().padStart(2,'0');
+    const hours = today.getHours().toString().padStart(2,'0');
+    const minutes = today.getMinutes().toString().padStart(2,'0');
+    const seconds = today.getSeconds().toString().padStart(2,'0');
+    const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
+
     const newBoard = {
       id: target[0].id,
       title: newTitle,
       receiver: target[0].receiver,
       addresser: newAddresser,
       password: target[0].password,
+      timeString,
       content: newContent,
     };
 
@@ -64,6 +74,7 @@ function ModifyHandler(props) {
         <>
           <h3>{props.element.title}</h3>
           <p className="addresser">from. {props.element.addresser}</p>
+          <p className="time">{props.element.timeString}</p>
           <p className="content">{props.element.content}</p>
         </>
       ) : (

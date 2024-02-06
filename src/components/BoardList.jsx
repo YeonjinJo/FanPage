@@ -23,6 +23,7 @@ const BoardList = () => {
             <StItem id={element.id} key={element.id} onClick={detailViewer}>
               <h3 id={element.id}>{element.title}</h3>
               <p id={element.id}>from. {element.addresser}</p>
+              <p id={element.id}>{element.timeString}</p>
             </StItem>
           );
         })}
@@ -31,3 +32,5 @@ const BoardList = () => {
 };
 
 export default BoardList;
+
+

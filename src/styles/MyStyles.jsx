@@ -8,7 +8,7 @@ export const makeFlex = `
   justify-content: center;
 `;
 
-export const StContainer = styled.body`
+export const StContainer = styled.div`
   ${makeFlex}
   overflow: auto;
 `;
