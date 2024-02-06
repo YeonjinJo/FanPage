@@ -181,6 +181,7 @@ export const StDetailContainer = styled.div`
   width: 50vw;
   height: 48vh;
 
+
   & h3 {
     grid-area: title;
     text-align: center;
@@ -195,7 +196,10 @@ export const StDetailContainer = styled.div`
   }
   & .content {
     grid-area: content;
-    margin-top: 1.5vh;
+    margin: 1.5vh 0;
+    white-space: break-spaces;
+    height: 24vh;
+    overflow-y: auto;
   }
   & .password {
     grid-area: password;

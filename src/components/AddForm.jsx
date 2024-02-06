@@ -141,7 +141,7 @@ const AddForm = () => {
           value={content}
           ref={contentRef}
           placeholder="Content → Less than 100 char"
-          maxLength={100}
+          maxLength={1000}
           onChange={(event) => setContent(event.target.value)}
         />
       </StSection>

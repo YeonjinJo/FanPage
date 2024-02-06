@@ -113,7 +113,7 @@ function ModifyHandler(props) {
                 id={id + "content"}
                 rows={5}
                 value={newContent}
-                maxLength={100}
+                maxLength={1000}
                 onChange={(event) => setNewContent(event.target.value)}
               />
             </StSection>
