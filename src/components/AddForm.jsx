@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 
 import { addBoard } from "../redux/modules/BoardItems";
@@ -15,10 +16,16 @@ import Jobs from "./Jobs";
 
 const AddForm = () => {
   const [title, setTitle] = useState("");
+  const titleRef = useRef();
   const [receiver, setReceiver] = useState("/job0");
   const [addresser, setAddresser] = useState("");
+  const addresserRef = useRef();
   const [password, setPassword] = useState("");
+  const passwordRef = useRef();
   const [content, setContent] = useState("");
+  const contentRef = useRef();
+  const navigate = useNavigate();
+
 
   const id = uuid();
   const dispatch = useDispatch();
@@ -36,12 +43,16 @@ const AddForm = () => {
     event.preventDefault();
     if (!title) {
       alert("Title is Empty!");
+      titleRef.current.focus();
     } else if (!addresser) {
       alert("Addresser is Empty!");
+      addresserRef.current.focus();
     } else if (!password) {
       alert("Set Your Password!");
+      passwordRef.current.focus();
     } else if (!content) {
       alert("No Letter Content!");
+      contentRef.current.focus();
     } else {
       if (window.confirm("Register Your Message?")) {
         const message = {
@@ -57,6 +68,7 @@ const AddForm = () => {
         dispatch(addBoard(message));
 
         alert("Registered!");
+        navigate(receiver);
 
         setTitle("");
         setAddresser("");
@@ -76,6 +88,7 @@ const AddForm = () => {
           id={id + "title"}
           type="text"
           value={title}
+          ref={titleRef}
           placeholder="Title → Less than 10 char"
           maxLength={10}
           onChange={(event) => setTitle(event.target.value)}
@@ -102,6 +115,7 @@ const AddForm = () => {
           id={id + "addresser"}
           type="text"
           value={addresser}
+          ref={addresserRef}
           placeholder="Addresser → Less than 5 char"
           maxLength={5}
           onChange={(event) => setAddresser(event.target.value)}
@@ -113,6 +127,7 @@ const AddForm = () => {
           id={id + "password"}
           type="password"
           value={password}
+          ref={passwordRef}
           placeholder="Password → Less than 8 char"
           maxLength={8}
           onChange={(event) => setPassword(event.target.value)}
@@ -124,6 +139,7 @@ const AddForm = () => {
           id={id + "content"}
           rows={5}
           value={content}
+          ref={contentRef}
           placeholder="Content → Less than 100 char"
           maxLength={100}
           onChange={(event) => setContent(event.target.value)}
