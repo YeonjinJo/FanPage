@@ -43,28 +43,34 @@ function ModifyHandler(props) {
   const modifyHandler = () => {
     const today = new Date();
     const year = today.getFullYear();
-    const month = (today.getMonth()+1).toString().padStart(2,'0');
-    const date = today.getDate().toString().padStart(2,'0');
-    const hours = today.getHours().toString().padStart(2,'0');
-    const minutes = today.getMinutes().toString().padStart(2,'0');
-    const seconds = today.getSeconds().toString().padStart(2,'0');
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const date = today.getDate().toString().padStart(2, "0");
+    const hours = today.getHours().toString().padStart(2, "0");
+    const minutes = today.getMinutes().toString().padStart(2, "0");
+    const seconds = today.getSeconds().toString().padStart(2, "0");
     const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
 
-    const newBoard = {
-      id: target[0].id,
-      title: newTitle,
-      receiver: target[0].receiver,
-      addresser: newAddresser,
-      password: target[0].password,
-      timeString,
-      content: newContent,
-    };
+    if (target[0].title === newTitle) {
+      alert("There is no any modification on title!");
+    } else if (target[0].content === newContent) {
+      alert("There is no any modification on content!");
+    } else {
+      const newBoard = {
+        id: target[0].id,
+        title: newTitle,
+        receiver: target[0].receiver,
+        addresser: newAddresser,
+        password: target[0].password,
+        timeString,
+        content: newContent,
+      };
 
-    if (window.confirm("Really Modify This Letter?")) {
-      dispatch(modifyBoard(newBoard));
+      if (window.confirm("Really Modify This Letter?")) {
+        dispatch(modifyBoard(newBoard));
 
-      alert("Modified!");
-      navigate(list);
+        alert("Modified!");
+        navigate(list);
+      }
     }
   };
 
