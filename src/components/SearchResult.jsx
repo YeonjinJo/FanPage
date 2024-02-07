@@ -23,7 +23,6 @@ function SearchResult() {
                   .includes(searchKeyword.replace(" ", "").toUpperCase())
               )
               .map((element) => {
-                console.log(Object.keys(element).length);
                 return (
                   <StItem id={element.id} key={element.id}>
                     <h3 id={element.id}>{element.title}</h3>

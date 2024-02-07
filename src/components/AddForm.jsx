@@ -26,7 +26,6 @@ const AddForm = () => {
   const contentRef = useRef();
   const navigate = useNavigate();
 
-
   const id = uuid();
   const dispatch = useDispatch();
 
