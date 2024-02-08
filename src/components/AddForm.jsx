@@ -24,8 +24,8 @@ const AddForm = () => {
   const passwordRef = useRef();
   const [content, setContent] = useState("");
   const contentRef = useRef();
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const id = uuid();
   const dispatch = useDispatch();
 
